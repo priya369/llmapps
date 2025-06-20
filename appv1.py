@@ -11,7 +11,6 @@ load_dotenv()
 os.environ["LANGCHAIN_API_KEY"]="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"
 os.environ["LANGCHAIN_TRACING_V2"]="true"
 os.environ["LANGCHAIN_PROJECT"]="Simple Q&A Chatbot With OPENAI"
-
 ## promopt template
 
 prompt=ChatPromptTemplate.from_messages(
@@ -39,7 +38,7 @@ st.title("Enhanced Q&A Chatbot with OpenAI")
 ## sidebar for settings
 
 st.sidebar.title("Settings")
-api_key=st.sidebar.text_input("Enter your Open AI API key",type="password")
+api_key=os.getenv("OPENAI_API_KEY")
 
 ## Drop down to select various Open AI models
 llm=st.sidebar.selectbox("Select an Open AI Model", ["gpt-4o","gpt-4-turbo","gpt-4"])
@@ -52,10 +51,7 @@ st.write("go ahead and ask any question")
 user_input=st.text_input("You:")
 
 if user_input:
-    if not api_key:
-        st.error("Please enter your OpenAI API key.")
-    else:
-        response = genearte_response(user_input, api_key, llm, temperature, max_tokens)
-        st.write(response)
+    response = genearte_response(user_input, api_key, llm, temperature, max_tokens)
+    st.write(response)
 else:
     st.write("Please provide a query.")
