@@ -2,16 +2,13 @@
 langchain-core>=0.1.0,<0.3.0
 langchain-groq>=0.1.0,<0.2.0
 langchain
-langchain-chroma
 langchain_huggingface
-langchain_openai
 # LangServe
 langserve[all]>=0.0.30,<0.3.0
-openai
 # FastAPI and related
 fastapi>=0.100.0,<0.112.0
 uvicorn[standard]>=0.20.0,<0.31.0
-
+pypdf
 ## Streamlit for web interface
 streamlit>=1.28.0,<2.0.0
 # Environment management
