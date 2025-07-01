@@ -44,7 +44,12 @@ if st.button("Summarize"):
                         st.stop()
 
                     try:
-                        transcript = YouTubeTranscriptApi.get_transcript(video_id, languages=['hi', 'en'])
+                        transcript = None
+                        try:
+                            transcript = YouTubeTranscriptApi.get_transcript(video_id, languages=['en'])
+                        except NoTranscriptFound:
+                            # Try with translation to English if Hindi captions exist but not English
+                            transcript = YouTubeTranscriptApi.get_transcript(video_id, languages=['hi'], translate='en')
                         transcript_text = " ".join([t['text'] for t in transcript])
                         docs = [Document(page_content=transcript_text)]
                     except (TranscriptsDisabled, NoTranscriptFound, CouldNotRetrieveTranscript):
