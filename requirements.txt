@@ -44,3 +44,6 @@ duckdb
 pandas
 mysql-connector-python
 SQLAlchemy
+urllib3
+certifi
+requests
